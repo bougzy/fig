@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Property</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand text-white" href="/">Real Estate App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="/upload">Upload Property</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-2 mb-4 bg-light shadow p-3 rounded p-4 mt-5">
+        <h3 class="my-4 text-center border border-rounded bg-primary text-white p-2">Upload Property</h3>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+            <div class="form-group">
+                <label for="localGovernment">Local Government</label>
+                <select class="form-control" id="localGovernment" name="localGovernment" required>
+                    <option value="Brass">Brass</option>
+                    <option value="Ekeremor">Ekeremor</option>
+                    <option value="Kolokuma/Opokuma">Kolokuma/Opokuma</option>
+                    <option value="Nembe">Nembe</option>
+                    <option value="Ogbia">Ogbia</option>
+                    <option value="Sagbama">Sagbama</option>
+                    <option value="Southern Ijaw">Southern Ijaw</option>
+                    <option value="Yenagoa">Yenagoa</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" class="form-control-file" id="image" name="image" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+
+    <div class="container mt-5">
+        <h3 class="text-center mb-4">Property Listings</h3>
+        <div id="properties-list" class="row">
+            <!-- Property cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+        <!-- Edit Property Modal -->
+<div class="modal fade" id="editPropertyModal" tabindex="-1" role="dialog" aria-labelledby="editPropertyModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPropertyModalLabel">Edit Property</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editPropertyForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="edit-title">Title</label>
+                        <input type="text" class="form-control" id="edit-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-location">Location</label>
+                        <input type="text" class="form-control" id="edit-location" name="location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-localGovernment">Local Government</label>
+                        <input type="text" class="form-control" id="edit-localGovernment" name="localGovernment" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-description">Description</label>
+                        <textarea class="form-control" id="edit-description" name="description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-email">Email</label>
+                        <input type="email" class="form-control" id="edit-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-phone">Phone</label>
+                        <input type="text" class="form-control" id="edit-phone" name="phone" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    <footer class="bg-light text-center text-lg-start">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Real Estate App</h5>
+                    <p>Find your perfect home with us. We offer a wide range of properties to suit all needs and budgets.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="/" class="text-dark">Home</a></li>
+                        <li><a href="/upload" class="text-dark">Upload Property</a></li>
+                        <li><a href="#property-list" class="text-dark">Browse Listings</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Contact</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="mailto:info@realestateapp.com" class="text-dark">info@realestateapp.com</a></li>
+                        <li><a href="tel:+1234567890" class="text-dark">+1 234 567 890</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3 bg-dark text-white">
+            &copy; 2024 Real Estate App. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
+
